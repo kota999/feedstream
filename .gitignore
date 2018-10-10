@@ -1,0 +1,9 @@
+*~
+.*sw*
+.ropeproject
+.DS_Store
+MANIFEST
+build/
+dist/
+node_modules/
+
