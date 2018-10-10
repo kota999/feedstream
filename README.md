@@ -16,7 +16,11 @@ npm install
 npm run dev
 
 # build electron application for production
+# For OSX
 npm run build
+npm run build:darwin
+# For Win (x64/x86) - at OSX, depending wine
+npm run build:win
 
 # run unit & end-to-end tests
 npm test
