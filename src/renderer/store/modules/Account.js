@@ -134,8 +134,10 @@ const actions = {
             }
             let idx = 0
             function notify () {
-              Notify.createNotifier(context.state.token, response.data.items[idx], count, timeout)
-              idx++
+              if (response.data.items.length !== 0) {
+                Notify.createNotifier(context.state.token, response.data.items[idx], count, timeout)
+                idx++
+              }
               if (idx === response.data.items.length) {
                 clearInterval(id2)
               }
