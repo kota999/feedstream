@@ -15,7 +15,7 @@
         <b-alert variant="success" show>Authentication success.</b-alert>
       </div>
       <div v-else>
-        <b-alert variant="danger" show>Authentication failed, or access token is expired.</b-alert>
+        <b-alert variant="danger" show>Authentication failed.</b-alert>
       </div>
       <b-tabs>
         <b-tab title="User Info" active>
@@ -23,17 +23,17 @@
             <user-info-block></user-info-block>
           </div>
           <div v-else>
-            <p> Refresh Access token ! </p>
+            <p> Please authenticate ! </p>
           </div>
         </b-tab>
-        <b-tab title="Access Token" >
-          <access-token-block></access-token-block>
+        <b-tab title="Auth" >
+          <authentication-block></authentication-block>
         </b-tab>
       </b-tabs>
       <!-- Footer -->
       <footer class="footer">
         <div class="container">
-          <a class="text-muted" href="https://github.com/kota999/">contact to kota999</a>
+          <a class="text-muted" href="#" v-on:click="jumpTo('https://github.com/kota999/')">contact to kota999</a>
         </div>
       </footer>
     </main>
@@ -43,20 +43,24 @@
 <script>
   import {mapGetters, mapActions} from 'vuex'
   import UserInfoBlock from '@/components/UserInfoPage/UserInfoBlock'
-  import AccessTokenBlock from '@/components/UserInfoPage/AccessTokenBlock'
+  import AuthenticationBlock from '@/components/UserInfoPage/AuthenticationBlock'
+  import Utils from '@/components/api/Utils'
 
   export default {
     name: 'userinfo-page',
     components: {
       UserInfoBlock,
-      AccessTokenBlock
+      AuthenticationBlock
     },
     methods: {
       ...mapActions([
         'readToken',
         'auth',
         'viewFeed'
-      ])
+      ]),
+      jumpTo (url) {
+        Utils.jumpTo(url)
+      }
     },
     created () {
       this.readToken()
